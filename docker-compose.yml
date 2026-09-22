@@ -1,2 +1,5 @@
 services:
-    jupyter:
+  jupyter:
+    image: quay.io/jupyter/scipy-notebook@sha256:c88fd047a38689b1fe621309eaa91d1f0637c5c1ef3bccb7509cfa92d2b508ca
+    ports:
+        - "8080:8888"
