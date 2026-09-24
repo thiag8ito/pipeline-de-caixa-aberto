@@ -30,16 +30,3 @@
 
     - Sempre bom colocar o mapeamento de portas entre aspas. Isso irá garantir que quando usar portas com numeros pequenos,
     o interpretador pode converter o valor para o sistema sexadecimal o que quebraira a configuração
-
-
-#   - Testando o [docker compose up/down]
-    ao testar o docker compose up, criar um notebook dentro do Jupyterlab salvar ele e rodas docker compose down, o notebook foi deletado, o que comprovou em prática que preciso de um volume aqui para o projeto seguir em frente.
-
-    o container sumiu por nao ter um volume configurado dentro do ambiente
-
-#   - sobre o volume:
-    docker run --mount type=bind,src=<host-path>,dst=<container-path> é o melhor caminho a ser adotado por --mount ser explicito e ter suporte para todas as opções disponíveis para nós usarmos
-
-    usar o caminho relativo [- ./notebooks:/home/jovyan/work] é mais recomendado por conta da reprodutibilidade dos testes em outras maquinas, ao contrario do caminho absoluto, onde os direotrios podem ser diferentes em maquinas diferentes.
-
-    
