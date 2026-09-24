@@ -27,6 +27,29 @@
 #        - "8080:8888"
 #        - "443:443"  
 
-
     - Sempre bom colocar o mapeamento de portas entre aspas. Isso irá garantir que quando usar portas com numeros pequenos,
     o interpretador pode converter o valor para o sistema sexadecimal o que quebraira a configuração
+
+
+3 - Volumes
+   
+#   - Testando o [docker compose up/down]
+    ao testar o docker compose up, criar um notebook dentro do Jupyterlab salvar ele e rodas docker compose down, o notebook foi deletado, 
+    o que comprovou em prática que preciso de um volume aqui para o projeto seguir em frente.
+
+    o container sumiu por nao ter um volume configurado dentro do ambiente
+
+
+    - docker run --mount type=bind,src=<host-path>,dst=<container-path> é o melhor caminho a ser adotado por --mount ser explicito e 
+    ter suporte para todas as opções disponíveis para nós usarmos
+
+
+    - usar o caminho relativo [- ./notebooks:/home/jovyan/work] é mais recomendado por conta da reprodutibilidade dos testes em outras maquinas, 
+    ao contrario do caminho absoluto, onde os direotrios podem ser diferentes em maquinas diferentes.
+
+    - por que bind mount na raiz do home quebraria o jupyter?
+        - Isso aconteeria porque caso nossa pasta vazia fosse montada na raiz, os arquivos de configuração ficariam 
+        inacessiveis, o que faria com que o jupyterlab não abrisse.
+
+    JUPYTER_TOKEN = 397a92572c9302472b8520c4c5f78c7ccbd92849ce8734c0
+    
