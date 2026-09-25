@@ -51,3 +51,5 @@
         - Isso aconteeria porque caso nossa pasta vazia fosse montada na raiz, os arquivos de configuração ficariam 
         inacessiveis, o que faria com que o jupyterlab não abrisse.
 
+JUPYTER TOKEN = 397a92572c9302472b8520c4c5f78c7ccbd92849ce8734c0
+    
