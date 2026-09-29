@@ -8,3 +8,8 @@ services:
         - ./data:/home/jovyan/data
     environment:
       JUPYTER_TOKEN: ${JUPYTER_TOKEN}
+    deploy:  
+      resources:
+        limits:
+          memory: 1G
+          cpus: '2.0'
