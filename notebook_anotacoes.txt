@@ -23,9 +23,9 @@
     services:
     notebook:
         image: jupyter/base-notebook
-#       ports:
-#        - "8080:8888"
-#        - "443:443"  
+        ports:
+         - "8080:8888"
+         - "443:443"  
 
     - Sempre bom colocar o mapeamento de portas entre aspas. Isso irá garantir que quando usar portas com numeros pequenos,
     o interpretador pode converter o valor para o sistema sexadecimal o que quebraira a configuração
@@ -33,7 +33,7 @@
 
 3 - Volumes
    
-#   - Testando o [docker compose up/down]
+   - Testando o [docker compose up/down]
     ao testar o docker compose up, criar um notebook dentro do Jupyterlab salvar ele e rodas docker compose down, o notebook foi deletado, 
     o que comprovou em prática que preciso de um volume aqui para o projeto seguir em frente.
 
@@ -55,3 +55,30 @@ http://127.0.0.1:8080/lab?token=397a92572c9302472b8520c4c5f78c7ccbd92849ce8734c0
     
 
     
+
+4 - Resolvendo pendencias que acabaram ficando para trás
+
+    - Fechamos o teste de CAPTC_DIA/RESG_DIA/NR_COTST com numeros reais de um fundo
+    - Testamos a API SGS do banco, escolhendo a série da SELIC para ser a taxa que iremos monitorar
+    - Limpamos o gitignore para somente ter aquilo que importa para o projeto
+
+    ## Após testarmos a API e ela aceitar a requisição
+
+    import requests
+
+    url = 'https://api.bcb.gov.br/dados/serie/bcdata.sgs.11/dados?formato=json&dataInicial=01/01/2026&dataFinal=07/10/2026'
+    resposta = requests.get(url)
+    resposta.status_code
+
+    dados = resposta.json()
+    dados[5]  #primeiros 5 registros
+
+    Com isso conseguimos:
+        - uma lista de dicionarios com chaves 'data' e 'valor'
+        - a data veio em formato dd/mm/aaaa 
+        - o valor vem como uma string 
+
+        A estrutura de cada registro ficou como: {'data': '02/01/2026', 'valor': '0.055131'}
+        a data veio como dd/mm/aaa
+        o valor veio como string
+        e como delimitei o pedido ao 5 primeiros registros
