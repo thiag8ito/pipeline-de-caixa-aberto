@@ -82,3 +82,24 @@ http://127.0.0.1:8080/lab?token=397a92572c9302472b8520c4c5f78c7ccbd92849ce8734c0
         a data veio como dd/mm/aaa
         o valor veio como string
         e como delimitei o pedido ao 5 primeiros registros
+
+
+Pergunta: para o período que você pediu (de janeiro até hoje, cerca de 9 meses), quantos registros você esperaria se a Selic fosse divulgada todo dia útil? 
+        E quantos esperaria se fosse só uma vez por mês (já que o Comitê de Política Monetária se reúne periodicamente)? 
+        Compare essas duas expectativas com o número real que len(dados) te devolver.
+
+    É esperado 22 dias por mês, dando perto de 198 dias, caso fosse uma vez por mês teriamos apenas 9 registros, um por mês.
+
+______________________________________________________________________________________________________
+Fonte	    Série	            Código	    Granularidade	        Formato bruto	    Campos        |         
+CVM	        Informe Diário	    —	        Diária	                CSV (;)	            10 colunas    |  
+BCB/SGS	    Selic	            11	        Diária(dias úteis)      JSON	            data, valor   |  
+______________________________________________________________________________________________________|
+
+Sobre o design:
+a data inicial e final é sempre a mesma
+devolver um dataframe pronto (por ser um processo que ja conheço, mas o JSON é mais simples?)
+a melhor forma seria colocar valor_selic, valor-cambio, valor_ipca talvez
+
+Tarefa:
+cambio = 1, IPCA = 433
